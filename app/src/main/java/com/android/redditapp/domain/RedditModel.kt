@@ -1,6 +1,6 @@
 package com.android.redditapp.domain
 
-data class RedditPost(
+data class RedditModel(
     val name: String,
     val title: String,
     val score: Int,
@@ -9,5 +9,6 @@ data class RedditPost(
     val num_comments: Int,
     val created: Long,
     val thumbnail: String?,
-    val url: String?
+    val url: String?,
+    val author_fullname: String,
 )

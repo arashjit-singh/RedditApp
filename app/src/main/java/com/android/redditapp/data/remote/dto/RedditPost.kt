@@ -22,6 +22,9 @@ data class RedditPost
     @SerializedName("num_comments")
     val num_comments: Int,
 
+    @SerializedName("author_fullname")
+    val author_fullname: String,
+
     @SerializedName("created_utc")
     val created: Long,
     val thumbnail: String?,

@@ -16,7 +16,6 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-
 class RedditPagingSource @Inject constructor(
     private val redditApi: RedditApi,
     private val db: RedditDatabase,
@@ -60,14 +59,16 @@ class RedditPagingSource @Inject constructor(
                         return@withTransaction db.postDao().getAllPosts()
                     }
 
-                    // clear all tables in the database
+                    // clear all tables in the database on refresh
                     if (loadType == LoadType.REFRESH) {
                         db.postDao().clearDb()
                     }
+
                     val childrenList = items?.children
                     val postEntity = childrenList?.map {
                         it.data.toPostEntity()
                     }
+
                     postEntity?.let { db.postDao().insertPosts(postEntity) }
 
                     // Load data from the database
@@ -75,7 +76,9 @@ class RedditPagingSource @Inject constructor(
                 }
 
                 LoadResult.Page(
-                    data = data, prevKey = items.before, nextKey = items.after
+                    data = data,
+                    prevKey = items.before,
+                    nextKey = items.after
                 )
             }
 
