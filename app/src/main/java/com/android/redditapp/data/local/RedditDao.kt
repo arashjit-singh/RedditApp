@@ -17,5 +17,5 @@ interface RedditDao {
     suspend fun getAllPosts(): List<PostEntity>
 
     @Query("SELECT * from postsList")
-    fun getPostsForSubreddit(): PagingSource<Int, PostEntity>
+    fun getPostSource(): PagingSource<Int, PostEntity>
 }

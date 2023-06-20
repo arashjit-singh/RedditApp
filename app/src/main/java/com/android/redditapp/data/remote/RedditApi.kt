@@ -7,9 +7,11 @@ import retrofit2.http.Query
 
 interface RedditApi {
 
-    @GET("/r/{subredditName}/top.json")
-    fun getTopPosts(
+    @GET("r/{subredditName}/top.json")
+    suspend fun getTopPosts(
         @Path("subredditName") subredditName: String,
-        @Query("limit") limit: Int
-    ): List<RedditListingResponseDto>
+        @Query("limit") limit: Int,
+        @Query("after") after: String?,
+        @Query("before") before: String?,
+    ): RedditListingResponseDto
 }
