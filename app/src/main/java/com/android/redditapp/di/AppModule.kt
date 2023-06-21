@@ -3,6 +3,7 @@ package com.android.redditapp.di
 import android.content.Context
 import com.android.redditapp.util.AppHelper
 import com.android.redditapp.util.ConnectivityHelper
+import com.android.redditapp.util.ConnectivityHelperImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +18,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideConnectivityHelper(@ApplicationContext context: Context): ConnectivityHelper {
-        return ConnectivityHelper(context)
+        return ConnectivityHelperImpl(context)
     }
 
     @Provides

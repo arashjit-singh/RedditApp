@@ -24,11 +24,21 @@ class RedditDaoTest {
             title = "dummyPost",
             author = "dummy",
             created = System.currentTimeMillis(),
-            num_comments = 123,
+            commentCount = 123,
             score = 1,
             subreddit = "dummy",
             thumbnail = "dummyUrl",
-            url = "dummyUrl"
+            url = "dummyUrl",
+            subRedditNamePrefixed = "dummy",
+            postHint = "",
+            media = "",
+            isVideo = false,
+            isSelf = true,
+            content = "",
+            authorFullName = "",
+            isGif = false,
+            id = "123",
+            previewUrl = ""
         )
     )
 

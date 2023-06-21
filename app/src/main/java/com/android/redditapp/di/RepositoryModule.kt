@@ -4,7 +4,7 @@ import com.android.redditapp.data.local.RedditDatabase
 import com.android.redditapp.data.remote.RedditApi
 import com.android.redditapp.data.repository.RedditRepository
 import com.android.redditapp.data.repository.RedditRepositoryImpl
-import com.android.redditapp.util.ConnectivityHelper
+import com.android.redditapp.util.ConnectivityHelperImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,8 +21,8 @@ object RepositoryModule {
         redditApi: RedditApi,
         db: RedditDatabase,
         @IoDispatcher dispatcher: CoroutineDispatcher,
-        connectivityHelper: ConnectivityHelper
+        connectivityHelperImpl: ConnectivityHelperImpl
     ): RedditRepository {
-        return RedditRepositoryImpl(redditApi, db, dispatcher, connectivityHelper)
+        return RedditRepositoryImpl(redditApi, db, dispatcher, connectivityHelperImpl)
     }
 }

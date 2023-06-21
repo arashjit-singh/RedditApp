@@ -21,7 +21,7 @@ class RedditPagingSource @Inject constructor(
     private val db: RedditDatabase,
     private val subredditName: String,
     private val dispatcher: CoroutineDispatcher,
-    private val connectivityHelper: ConnectivityHelper
+    private val connectivityHelperImpl: ConnectivityHelper
 ) : PagingSource<String, PostEntity>() {
     override fun getRefreshKey(state: PagingState<String, PostEntity>): String? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -31,7 +31,7 @@ class RedditPagingSource @Inject constructor(
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, PostEntity> {
 
-        val isConnectedToNetwork = connectivityHelper.isNetworkAvailable()
+        val isConnectedToNetwork = connectivityHelperImpl.isNetworkAvailable()
 
         return try {
             withContext(dispatcher) {

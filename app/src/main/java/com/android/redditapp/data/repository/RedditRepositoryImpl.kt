@@ -7,7 +7,7 @@ import com.android.redditapp.data.local.PostEntity
 import com.android.redditapp.data.local.RedditDatabase
 import com.android.redditapp.data.remote.RedditApi
 import com.android.redditapp.di.IoDispatcher
-import com.android.redditapp.util.ConnectivityHelper
+import com.android.redditapp.util.ConnectivityHelperImpl
 import com.android.redditapp.util.Constants
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +17,7 @@ class RedditRepositoryImpl @Inject constructor(
     private val redditApi: RedditApi,
     private val db: RedditDatabase,
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
-    private val connectivityHelper: ConnectivityHelper
+    private val connectivityHelperImpl: ConnectivityHelperImpl
 ) : RedditRepository {
 
     override fun getPopularPagingData(subredditName: String): Flow<PagingData<PostEntity>> {
@@ -31,7 +31,7 @@ class RedditRepositoryImpl @Inject constructor(
                     db = db,
                     subredditName = subredditName,
                     dispatcher = dispatcher,
-                    connectivityHelper = connectivityHelper
+                    connectivityHelperImpl = connectivityHelperImpl
                 )
             }
         ).flow
