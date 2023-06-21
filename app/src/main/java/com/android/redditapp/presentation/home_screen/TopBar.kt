@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -37,7 +38,7 @@ fun TopBar(
     Box(
         modifier = Modifier.border(
             width = 0.5.dp,
-            color = backgroundColor,
+            color = MaterialTheme.colorScheme.surfaceVariant,
             shape = RoundedCornerShape(bottomStart = 7.dp, bottomEnd = 7.dp),
         )
     ) {
@@ -65,10 +66,11 @@ fun TopBar(
                         Row(
                             modifier = Modifier
                                 .background(
-                                    backgroundColor, shape = RoundedCornerShape(5.dp)
+                                    MaterialTheme.colorScheme.surfaceVariant,
+                                    shape = RoundedCornerShape(5.dp)
                                 )
                                 .padding(start = 7.dp, end = 5.dp, top = 3.dp, bottom = 3.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = CenterVertically
                         ) {
 
                             Text(
