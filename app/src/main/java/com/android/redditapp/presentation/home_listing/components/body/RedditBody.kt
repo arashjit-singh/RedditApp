@@ -14,19 +14,19 @@ fun RedditBody(
         NetworkListingPostType.IMAGE -> {
             ItemBodyImageView(title = post.title, image = post.url, onPostClickCallback = {
                 openPosHandler()
-            })
+            }, modifier = modifier)
         }
 
         NetworkListingPostType.SELF -> {
             ItemBodySelfView(title = post.title, content = post.content, onPostClickCallback = {
                 openPosHandler()
-            })
+            }, modifier = modifier)
         }
 
         else -> {
             ItemBodyVideoLinkView(post, onPostClickCallback = {
                 openPosHandler()
-            })
+            }, modifier = modifier)
         }
     }
 }

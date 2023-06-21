@@ -58,17 +58,19 @@ class RedditPagingSource @Inject constructor(
                     db.postDao().getAllPosts()
                 }
 
-                db.withTransaction {
-                    // clear all tables in the database on refresh
-                    if (loadType == LoadType.REFRESH) {
-                        db.postDao().clearDb()
-                    }
+                posts?.let {
+                    db.withTransaction {
+                        // clear all tables in the database on refresh
+                        if (loadType == LoadType.REFRESH) {
+                            db.postDao().clearDb()
+                        }
 
-                    posts?.let { db.postDao().insertPosts(posts) }
+                        posts.let { db.postDao().insertPosts(posts) }
+                    }
                 }
 
                 LoadResult.Page(
-                    data = posts,
+                    data = posts.sortedByDescending { it.created },
                     prevKey = items.before,
                     nextKey = items.after
                 )
@@ -81,3 +83,4 @@ class RedditPagingSource @Inject constructor(
         }
     }
 }
+

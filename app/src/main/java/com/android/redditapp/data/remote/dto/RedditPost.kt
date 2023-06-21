@@ -6,7 +6,8 @@ import com.google.gson.annotations.SerializedName
 
 data class RedditPost
     (
-    @SerializedName("name") val id: String,
+    @SerializedName("name") val name: String,
+    @SerializedName("id") val id: String,
 
     @SerializedName("title") val title: String,
 
@@ -18,7 +19,7 @@ data class RedditPost
 
     @SerializedName("num_comments") val commentCount: Int,
 
-    @SerializedName("author_fullname") val authorFullName: String,
+    @SerializedName("author_fullname") val authorFullName: String?,
 
     @SerializedName("created_utc") val created: Long,
 

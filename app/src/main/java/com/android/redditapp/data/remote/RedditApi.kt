@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface RedditApi {
 
-    @GET("r/{subredditName}/top.json")
+    @GET("r/{subredditName}/top.json?sort=new")
     suspend fun getTopPosts(
         @Path("subredditName") subredditName: String,
         @Query("limit") limit: Int,

@@ -1,5 +1,6 @@
 package com.android.redditapp.data.mapper
 
+import android.text.Html
 import com.android.redditapp.data.local.PostEntity
 import com.android.redditapp.data.remote.dto.RedditPost
 import com.android.redditapp.domain.RedditModel
@@ -8,6 +9,7 @@ import com.android.redditapp.util.NetworkListingPostType
 fun RedditPost.toPostEntity(): PostEntity {
     return PostEntity(
         id,
+        name,
         title,
         score,
         author,
@@ -21,7 +23,9 @@ fun RedditPost.toPostEntity(): PostEntity {
         postHint,
         isVideo,
         isSelf,
-        previewUrl = preview?.images?.firstOrNull()?.source?.url,
+        previewUrl = if (preview?.images?.firstOrNull()?.source?.url?.isNotBlank() == true) Html.escapeHtml(
+            preview?.images?.firstOrNull()?.source?.url
+        ) else "",
         media = media?.redditVideo?.videoUrl,
         isGif = media?.redditVideo?.isGif,
         content = content
@@ -31,6 +35,7 @@ fun RedditPost.toPostEntity(): PostEntity {
 fun PostEntity.toPostModel(): RedditModel {
     return RedditModel(
         id,
+        name,
         title,
         score,
         author,

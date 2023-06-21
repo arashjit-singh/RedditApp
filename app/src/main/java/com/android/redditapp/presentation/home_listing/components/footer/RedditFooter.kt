@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
@@ -31,28 +31,32 @@ fun RedditFooter(
         modifier = modifier
             .padding(8.dp)
             .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Row {
             Image(
-                modifier = Modifier
+                modifier = modifier
                     .size(16.dp)
-                    .clickable {},
+                    .clickable {}
+                    .align(CenterVertically),
                 painter = painterResource(id = R.drawable.icon_upvote),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
                 contentDescription = stringResource(R.string.upvote_icon)
             )
             Text(
-                modifier = Modifier.padding(horizontal = 8.dp),
+                modifier = modifier
+                    .padding(horizontal = 8.dp)
+                    .align(CenterVertically),
                 text = likeCount,
                 style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Image(
-                modifier = Modifier
+                modifier = modifier
                     .size(16.dp)
-                    .clickable {},
+                    .clickable {}
+                    .align(CenterVertically),
                 painter = painterResource(id = R.drawable.icon_downvote),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
                 contentDescription = stringResource(R.string.downvote_icon)
@@ -60,23 +64,28 @@ fun RedditFooter(
         }
         Row() {
             Image(
-                modifier = Modifier
+                modifier = modifier
                     .size(16.dp)
-                    .clickable {},
+                    .clickable {}
+                    .align(CenterVertically),
                 painter = painterResource(id = R.drawable.icon_comment),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
                 contentDescription = stringResource(R.string.comment_icon)
             )
             Text(
-                modifier = Modifier.padding(horizontal = 8.dp),
+                modifier = modifier
+                    .padding(horizontal = 8.dp)
+                    .align(CenterVertically),
                 text = commentCount,
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
-        Row(modifier = Modifier.clickable {}) {
+        Row(modifier = modifier.clickable {}) {
             Image(
-                modifier = Modifier.size(16.dp),
+                modifier = modifier
+                    .size(16.dp)
+                    .align(CenterVertically),
                 painter = painterResource(id = R.drawable.icon_share),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
                 contentDescription = stringResource(R.string.share_icon)
@@ -84,11 +93,13 @@ fun RedditFooter(
             Text(
                 text = "Share",
                 style = MaterialTheme.typography.labelLarge,
-                modifier = Modifier.padding(horizontal = 8.dp),
+                modifier = modifier
+                    .padding(horizontal = 8.dp)
+                    .align(CenterVertically),
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = modifier.width(10.dp))
     }
 }
 
