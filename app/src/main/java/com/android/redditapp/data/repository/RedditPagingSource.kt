@@ -34,7 +34,6 @@ class RedditPagingSource @Inject constructor(
         val isConnectedToNetwork = connectivityHelper.isNetworkAvailable()
 
         return try {
-
             withContext(dispatcher) {
                 val loadType = when (params) {
                     is LoadParams.Refresh -> LoadType.REFRESH
@@ -53,30 +52,23 @@ class RedditPagingSource @Inject constructor(
                     ListingData(children = emptyList(), before = null, after = null)
                 }
 
-                val data = db.withTransaction {
+                val posts = if (isConnectedToNetwork) items.children.map {
+                    it.data.toPostEntity()
+                } else {
+                    db.postDao().getAllPosts()
+                }
 
-                    if (!isConnectedToNetwork) {
-                        return@withTransaction db.postDao().getAllPosts()
-                    }
-
+                db.withTransaction {
                     // clear all tables in the database on refresh
                     if (loadType == LoadType.REFRESH) {
                         db.postDao().clearDb()
                     }
 
-                    val childrenList = items?.children
-                    val postEntity = childrenList?.map {
-                        it.data.toPostEntity()
-                    }
-
-                    postEntity?.let { db.postDao().insertPosts(postEntity) }
-
-                    // Load data from the database
-                    db.postDao().getAllPosts()
+                    posts?.let { db.postDao().insertPosts(posts) }
                 }
 
                 LoadResult.Page(
-                    data = data,
+                    data = posts,
                     prevKey = items.before,
                     nextKey = items.after
                 )
