@@ -17,7 +17,7 @@ class HomeViewModel @Inject constructor(
     private val appHelper: AppHelper
 ) : ViewModel() {
 
-    val items = redditRepository.getPopularPagingData("doodoofard").map { postEntity ->
+    val items = redditRepository.getPopularPagingData("TheLastAirbender").map { postEntity ->
         postEntity.map {
             it.toPostModel()
         }

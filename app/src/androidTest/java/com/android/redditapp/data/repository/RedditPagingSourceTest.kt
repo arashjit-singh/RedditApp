@@ -24,9 +24,7 @@ class RedditPagingSourceTest {
 
     private val postFactory = PostFactory()
     private val fakePosts = listOf(
-        postFactory.createRedditPost(DEFAULT_SUBREDDIT)/*,
-        postFactory.createRedditPost(DEFAULT_SUBREDDIT),
-        postFactory.createRedditPost(DEFAULT_SUBREDDIT)*/
+        postFactory.createRedditPost(DEFAULT_SUBREDDIT)
     )
     private val fakeApi = FakeRedditApi().apply {
         fakePosts.forEach { post -> addPost(post) }
@@ -41,7 +39,7 @@ class RedditPagingSourceTest {
     }
 
     @Test
-    fun pageKeyedSubredditPagingSource() = runTest {
+    fun test_pageKeyedSubredditPagingSource() = runTest {
         val pagingSource = RedditPagingSource(
             redditApi = fakeApi,
             db = db,
