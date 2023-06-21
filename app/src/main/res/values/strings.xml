@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">RedditApp</string>
+    <string name="upvote_icon">Upvote Icon</string>
+    <string name="downvote_icon">Downvote Icon</string>
+    <string name="comment_icon">Comment Icon</string>
+    <string name="share_icon">Share Icon</string>
+    <string name="user_thumbnail_image">User Thumbnail Image</string>
+    <string name="post_action_button">Post Action Button</string>
+    <string name="posted_by">Posted by %s</string>
+    <string name="video_and_link_are_not_implemented_yet">🛠️ Video and Link are not implemented yet 🛠️</string>
 </resources>
