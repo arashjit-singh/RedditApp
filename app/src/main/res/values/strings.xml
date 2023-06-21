@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">RedditApp</string>
+    <string name="upvote_icon">Upvote Icon</string>
+    <string name="downvote_icon">Downvote Icon</string>
+    <string name="comment_icon">Comment Icon</string>
+    <string name="share_icon">Share Icon</string>
+    <string name="user_thumbnail_image">User Thumbnail Image</string>
+    <string name="post_action_button">Post Action Button</string>
+    <string name="posted_by">Posted by %s</string>
+    <string name="video_and_link_are_not_implemented_yet">🛠️ Video and Link are not implemented yet 🛠️</string>
+    <string name="no_app_available_to_open_the_post">No app available to open the post</string>
+    <string name="reddit_redirect_url">https://www.reddit.com/%s/comments/%s</string>
+    <string name="label_home">Home</string>
+    <string name="dropdown">DropDown</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="home_icon">Home Icon</string>
 </resources>
