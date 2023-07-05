@@ -26,4 +26,5 @@ object AppModule {
     fun provideAppHelper(@ApplicationContext context: Context): AppHelper {
         return AppHelper(context)
     }
+
 }

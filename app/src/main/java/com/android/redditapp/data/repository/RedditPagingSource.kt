@@ -9,7 +9,9 @@ import com.android.redditapp.data.local.RedditDatabase
 import com.android.redditapp.data.mapper.toPostEntity
 import com.android.redditapp.data.remote.RedditApi
 import com.android.redditapp.data.remote.dto.ListingData
+import com.android.redditapp.di.IoDispatcher
 import com.android.redditapp.util.ConnectivityHelper
+import com.android.redditapp.util.ConnectivityHelperImpl
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -19,10 +21,12 @@ import javax.inject.Inject
 class RedditPagingSource @Inject constructor(
     private val redditApi: RedditApi,
     private val db: RedditDatabase,
-    private val subredditName: String,
-    private val dispatcher: CoroutineDispatcher,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val connectivityHelperImpl: ConnectivityHelper
 ) : PagingSource<String, PostEntity>() {
+    var subredditName: String = ""
+        internal set
+
     override fun getRefreshKey(state: PagingState<String, PostEntity>): String? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey
@@ -58,7 +62,7 @@ class RedditPagingSource @Inject constructor(
                     db.postDao().getAllPosts()
                 }
 
-                posts?.let {
+                posts.let {
                     db.withTransaction {
                         // clear all tables in the database on refresh
                         if (loadType == LoadType.REFRESH) {
